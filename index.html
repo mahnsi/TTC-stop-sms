@@ -12,6 +12,8 @@
 <meta name="apple-mobile-web-app-title" content="TTC Stops" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
 <link rel="stylesheet" href="style.css" />
 
 </head>
@@ -19,7 +21,17 @@
 
 <div id="map"></div>
 
+<div id="panel">
+    <div id="search-wrap">
+    <input id="search-input" type="text" inputmode="numeric" placeholder="Find a stop code…" />
+    <div id="results"></div>
+    </div>
+</div>
+    
+<div id="status">Loading stops…</div>
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script src="script.js"></script>
 
 </body>
