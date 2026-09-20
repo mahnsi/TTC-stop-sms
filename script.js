@@ -5,6 +5,8 @@ const map = L.map('map', {
     zoom: 12 
 });
 
+document.getElementById('locate-btn').addEventListener('click', () => locateUser());
+
 // Tiles to display actual map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors',
@@ -30,6 +32,33 @@ const clusters = L.markerClusterGroup({
   const statusEl = document.getElementById('status');
   const searchInput = document.getElementById('search-input');
   const resultsEl = document.getElementById('results');
+
+  let userMarker = null;
+  let userAccuracyCircle = null;
+
+  function locateUser() {
+    statusEl.classList.remove('hidden'); // bring back status bar
+    statusEl.textContent = 'Finding your location…';
+    map.locate({ setView: true, maxZoom: 16, enableHighAccuracy: true, timeout: 10000 });
+  }
+
+  map.on('locationfound', function (e) {
+    if (userMarker) map.removeLayer(userMarker);
+    if (userAccuracyCircle) map.removeLayer(userAccuracyCircle); //cleanup previous user location markers if they exist
+     
+    userAccuracyCircle = L.circle(e.latlng).addTo(map); // draws a circle at the returned user location
+    userMarker = L.circleMarker(e.latlng).addTo(map);
+     
+    statusEl.textContent = 'Location found';
+    setTimeout(() => statusEl.classList.add('hidden'), 1500);
+    });
+     
+    map.on('locationerror', function () {
+    statusEl.textContent = "Couldn't get your location — showing default view.";
+    setTimeout(() => statusEl.classList.add('hidden'), 3000);
+    });
+  
+  locateUser(); // call locateUser() on page load to set initial map view
    
   let allFeatures = [];
   let allStops = [];

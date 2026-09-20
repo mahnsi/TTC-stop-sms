@@ -1,4 +1,93 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
 #map {
-    height: 100vh;
-    width: 100%;
-  }
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#panel {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+}
+
+#search-wrap {
+  background: white;
+  border: 1px solid #ccc;
+}
+
+#search-input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#results {
+  border-top: 1px solid #ccc;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.result-item {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.result-code {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+#status {
+  position: absolute;
+  bottom: 16px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+  text-align: center;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+#status.hidden {
+  display: none;
+}
+
+.stop-code-label {
+  background: white;
+  border: 1px solid black;
+  font-size: 11px;
+  padding: 1px 4px;
+}
+
+.marker-cluster-ttc {
+  background: rgba(255, 0, 0, 0.3);
+}
+.marker-cluster-ttc div {
+  background: red;
+  color: white;
+}
+
+#locate-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 73px;
+  z-index: 1000;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
