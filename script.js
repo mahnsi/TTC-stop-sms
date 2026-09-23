@@ -59,7 +59,11 @@ const clusters = L.markerClusterGroup({
     });
   
   locateUser(); // call locateUser() on page load to set initial map view
-   
+  
+  function copy(text){
+    navigator.clipboard.writeText(text);
+  }
+
   let allFeatures = [];
   let allStops = [];
 
@@ -85,7 +89,7 @@ const clusters = L.markerClusterGroup({
           className: 'stop-code-label'
         }); //text label on the marker to show code
    
-        marker.bindPopup('<b>Stop ' + code + '</b><br>' + name); //show stop name as well on click of marker
+        marker.bindPopup('<b>Stop ' + code + '</b><br>' + name +'<br> <button onclick="copy('+code+')">Copy code</button>'); //show stop name as well on click of marker
    
         clusters.addLayer(marker); //add the marker to the marker cluster group
         allStops.push({ code: String(code), name: String(name), marker }); //add it to the allstops array (for search functionality)
